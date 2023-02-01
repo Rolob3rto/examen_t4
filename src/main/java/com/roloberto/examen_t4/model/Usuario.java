@@ -1,19 +1,60 @@
-package com.rolob3rto.springprojects.tienda.model;
+package com.roloberto.examen_t4.model;
 
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
+
+@Entity
 public class Usuario {
-    String codigo;
-    String nombre;
-    String contrasena;
+    
+    @Id
+    @GeneratedValue
+    private String codigo;
+
+    @Column(unique = true)
+    private String nombre;
+
+    @Column(unique = true)
+    private String email;
+
+    @ManyToOne
+    private Grupo grupo;
+
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Permiso> permisos;
 
     public Usuario() {
     }
-
-    public Usuario(String codigo, String nombre, String contrasena) {
-        this.nombre = nombre;
-        this.contrasena = contrasena;
-        this.codigo = codigo;
-    }
     
+    public Usuario(String codigo, String nombre, String email, Grupo grupo, List<Permiso> permisos) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.email = email;
+        this.grupo = grupo;
+        this.permisos = permisos;
+    }
+
+    public Usuario(List<Permiso> permisos) {
+        this.permisos = permisos;
+    }
+
+    public Usuario(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
+
+    public Usuario(Grupo grupo, List<Permiso> permisos) {
+        this.grupo = grupo;
+        this.permisos = permisos;
+    }
+
+
     public String getCodigo() {
         return codigo;
     }
@@ -27,12 +68,32 @@ public class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getContrasena() {
-        return contrasena;
+
+    public String getEmail() {
+        return email;
     }
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
+    public List<Permiso> getPermisos() {
+        return permisos;
+    }
+
+    public void setPermisos(List<Permiso> permisos) {
+        this.permisos = permisos;
+    }     
+
 
     @Override
     public int hashCode() {
@@ -58,8 +119,6 @@ public class Usuario {
             return false;
         return true;
     }
-
- 
 
     
 }
