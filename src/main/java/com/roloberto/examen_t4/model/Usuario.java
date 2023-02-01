@@ -15,7 +15,7 @@ public class Usuario {
     
     @Id
     @GeneratedValue
-    private String codigo;
+    private int codigo;
 
     @Column(unique = true)
     private String nombre;
@@ -32,7 +32,7 @@ public class Usuario {
     public Usuario() {
     }
     
-    public Usuario(String codigo, String nombre, String email, Grupo grupo, List<Permiso> permisos) {
+    public Usuario(int codigo, String nombre, String email, Grupo grupo, List<Permiso> permisos) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.email = email;
@@ -55,11 +55,11 @@ public class Usuario {
     }
 
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public String getNombre() {
@@ -92,14 +92,13 @@ public class Usuario {
 
     public void setPermisos(List<Permiso> permisos) {
         this.permisos = permisos;
-    }     
-
+    }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+        result = prime * result + codigo;
         return result;
     }
 
@@ -112,13 +111,12 @@ public class Usuario {
         if (getClass() != obj.getClass())
             return false;
         Usuario other = (Usuario) obj;
-        if (codigo == null) {
-            if (other.codigo != null)
-                return false;
-        } else if (!codigo.equals(other.codigo))
+        if (codigo != other.codigo)
             return false;
         return true;
-    }
+    }     
+
+
 
     
 }

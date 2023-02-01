@@ -17,7 +17,8 @@
         <tr>
           <th scope="col" th:text="#{usuarios.list.codigo}">Codigo</th>
           <th scope="col" th:text="#{usuarios.list.nombre}">Nombre</th>        
-          <th scope="col" th:text="#{usuarios.list.email}">Email</th>          
+          <th scope="col" th:text="#{usuarios.list.email}">Email</th>  
+          <th scope="col" th:text="#{usuarios.list.email}">grupo</th>  
           <th scope="col">---</th>
         </tr>
       </thead>
@@ -25,7 +26,8 @@
         <tr th:each="usuario : ${usuarios}">
           <th scope="row" th:text="${usuario.codigo}">#</th>
           <td th:text="${usuario.nombre}">---</td>          
-          <td th:text="${usuario.email}">---</td>          
+          <td th:text="${usuario.email}">---</td>
+          <td></td>
           <td>          
             <a class="btn btn-primary" th:text="#{usuarios.list.editar}" th:href="@{/usuarios/edit?codigo=}+${usuario.codigo}" href="edit.html"
               role="button">

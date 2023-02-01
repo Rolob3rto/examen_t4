@@ -10,7 +10,7 @@ public class Grupo {
     
     @Id
     @GeneratedValue
-    private String codigo;
+    private int codigo;
 
     @Column(unique = true)
     private String nombre;
@@ -18,16 +18,16 @@ public class Grupo {
     public Grupo() {
     }
 
-    public Grupo(String codigo, String nombre) {
+    public Grupo(int codigo, String nombre) {
         this.nombre = nombre;        
         this.codigo = codigo;
     }
     
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public String getNombre() {
@@ -41,7 +41,7 @@ public class Grupo {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+        result = prime * result + codigo;
         return result;
     }
 
@@ -54,14 +54,12 @@ public class Grupo {
         if (getClass() != obj.getClass())
             return false;
         Grupo other = (Grupo) obj;
-        if (codigo == null) {
-            if (other.codigo != null)
-                return false;
-        } else if (!codigo.equals(other.codigo))
+        if (codigo != other.codigo)
             return false;
         return true;
     }
 
+  
     
 
     

@@ -13,7 +13,7 @@ import jakarta.persistence.ManyToMany;
 public class Permiso {
     @Id
     @GeneratedValue
-    private String codigo;
+    private int codigo;
     
     private String descripcion;
 
@@ -32,16 +32,16 @@ public class Permiso {
     public Permiso() {
     }
 
-    public Permiso(String codigo, String descripcion) {
+    public Permiso(int codigo, String descripcion) {
         this.descripcion = descripcion;        
         this.codigo = codigo;
     }
     
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public String getDescripcion() {
@@ -55,7 +55,7 @@ public class Permiso {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+        result = prime * result + codigo;
         return result;
     }
 
@@ -68,16 +68,11 @@ public class Permiso {
         if (getClass() != obj.getClass())
             return false;
         Permiso other = (Permiso) obj;
-        if (codigo == null) {
-            if (other.codigo != null)
-                return false;
-        } else if (!codigo.equals(other.codigo))
+        if (codigo != other.codigo)
             return false;
         return true;
     }
 
-    
-    
    
  
 
