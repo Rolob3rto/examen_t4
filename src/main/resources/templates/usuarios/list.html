@@ -8,7 +8,7 @@
 
   <div class="container">
         <h1 th:text="#{usuarios.list.titulo}">Usuarios</h1>
-        <a class="btn btn-primary" th:text="#{usuarios.list.nuevoUsuario}" th:href="@{/usuarios/create}" href="new.html"
+        <a class="btn btn-primary" th:href="@{/usuarios/create}" href="new.html"
         role="button">
         Crear</a>
 
@@ -18,7 +18,7 @@
           <th scope="col" th:text="#{usuarios.list.codigo}">Codigo</th>
           <th scope="col" th:text="#{usuarios.list.nombre}">Nombre</th>        
           <th scope="col" th:text="#{usuarios.list.email}">Email</th>  
-          <th scope="col" th:text="#{usuarios.list.email}">grupo</th>  
+          <th scope="col">grupo</th>  
           <th scope="col">---</th>
         </tr>
       </thead>
@@ -27,13 +27,12 @@
           <th scope="row" th:text="${usuario.codigo}">#</th>
           <td th:text="${usuario.nombre}">---</td>          
           <td th:text="${usuario.email}">---</td>
-          <td></td>
+          <td th:text="${usuario.grupo.nombre}"></td>
           <td>          
             <a class="btn btn-primary" th:text="#{usuarios.list.editar}" th:href="@{/usuarios/edit?codigo=}+${usuario.codigo}" href="edit.html"
               role="button">
               Editar</a>
-            <a class="btn btn-primary" th:text="#{usuarios.list.borrar}" th:href="@{/usuarios/delete/}+${usuario.codigo}" href="#" role="button"><i class="bi bi-trash"></i>Borrar</a>
-            <a class="btn btn-primary" th:href="@{/usuarios/comprador/}+${usuario.codigo}" href="#" role="button"><i class="bi bi-person-plus-fill"></i>Elegir usuario</a>
+            <a class="btn btn-primary" th:text="#{usuarios.list.borrar}" th:href="@{/usuarios/delete/}+${usuario.codigo}" href="#" role="button"><i class="bi bi-trash"></i>Borrar</a>            
           </td>
         </tr>
       </tbody>
