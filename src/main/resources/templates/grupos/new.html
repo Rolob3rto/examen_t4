@@ -10,20 +10,7 @@
           <div class="mb-3">
             <label for="exampleInput1" class="form-label">Nombre</label>
             <input  type="text" class="form-control" name="nombre" id="exampleInput1">
-          </div>          
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input  type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">            
-          </div>
-         <div class="mb-3">
-            <label for="gruposSel" class="form-label">Grupos</label>            
-            <select name="grupo" id="grupoSel">
-              
-              <div th:each="grupo : ${grupos}">
-                <option value="${grupo.codigo}" th:text="${grupo.nombre}">---</option>
-              </div>
-            </select>
-         </div>
+          </div>                    
           <a class="btn btn-primary" th:href="@{/usuarios/list}" href="#" role="button">Cancelar</a>
           <button type="submit" class="btn btn-primary">Aceptar</button>
         </form>

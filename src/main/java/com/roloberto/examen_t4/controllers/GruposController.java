@@ -5,25 +5,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.roloberto.examen_t4.model.Usuario;
 import com.roloberto.examen_t4.model.Grupo;
-import com.roloberto.examen_t4.services.UsuariosServices;
 import com.roloberto.examen_t4.services.GruposServices;
 
 @Controller
-@RequestMapping("/usuarios")
-public class UsuarioController {
-
-    @Autowired
-    UsuariosServices usuarioServices;
+@RequestMapping("/grupos")
+public class GruposController {
 
     @Autowired
     GruposServices grupoServices;
@@ -31,11 +24,11 @@ public class UsuarioController {
     @RequestMapping(path = "/list")
     public ModelAndView list(){
 
-        List<Usuario> usuarios = usuarioServices.findAll();
+        List<Grupo> grupos = grupoServices.findAll();
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("usuarios", usuarios);
-        modelAndView.setViewName("usuarios/list");
+        modelAndView.addObject("grupos", grupos);
+        modelAndView.setViewName("grupos/list");
 
         return modelAndView;
     } 
@@ -45,9 +38,9 @@ public class UsuarioController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        Usuario usuario = usuarioServices.findUsuario(codigo);
-        modelAndView.addObject("usuario", usuario);
-        modelAndView.setViewName("usuarios/edit");
+        Grupo grupo = grupoServices.findGrupo(codigo);
+        modelAndView.addObject("grupo", grupo);
+        modelAndView.setViewName("grupos/edit");
 
         return modelAndView;
     }
@@ -56,38 +49,34 @@ public class UsuarioController {
     public ModelAndView create(){
 
          ModelAndView modelAndView = new ModelAndView();
-         modelAndView.addObject("usuario", new Usuario());
-         
-         List<Grupo> grupos = grupoServices.findAll();
-
-         modelAndView.addObject("grupos", grupos);
-         modelAndView.setViewName("usuarios/new");
+         modelAndView.addObject("grupo", new Grupo());
+         modelAndView.setViewName("grupos/new");
 
          return modelAndView;
     }
 
     @RequestMapping(path = "/save")
-    public ModelAndView save(Usuario usuario) throws IOException{
+    public ModelAndView save(Grupo grupo) throws IOException{
 
-        usuarioServices.save(usuario);
+        grupoServices.save(grupo);
 
          ModelAndView modelAndView = new ModelAndView();
         
 
-         modelAndView.setViewName("redirect:edit?codigo=" + usuario.getCodigo());
+         modelAndView.setViewName("redirect:edit?codigo=" + grupo.getCodigo());
 
          return modelAndView;
     }
 
     @PostMapping(path = "/update")
-    public ModelAndView update(Usuario usuario) throws IOException{
+    public ModelAndView update(Grupo grupo) throws IOException{
         
-        usuarioServices.update(usuario);
+        grupoServices.update(grupo);
         
          
         ModelAndView modelAndView = new ModelAndView();
         
-        modelAndView.setViewName("redirect:edit?codigo=" + usuario.getCodigo());
+        modelAndView.setViewName("redirect:edit?codigo=" + grupo.getCodigo());
 
          return modelAndView;
     }
@@ -95,11 +84,11 @@ public class UsuarioController {
     @RequestMapping(path = "/delete/{codigo}")
     public ModelAndView delete(@PathVariable(name = "codigo", required = true) int codigo){
 
-        usuarioServices.delete(codigo);
+        grupoServices.delete(codigo);
 
          ModelAndView modelAndView = new ModelAndView();
          
-         modelAndView.setViewName("redirect:/usuarios/list");
+         modelAndView.setViewName("redirect:/grupos/list");
 
          return modelAndView;
     }   
